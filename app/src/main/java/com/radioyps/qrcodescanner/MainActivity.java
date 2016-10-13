@@ -28,6 +28,11 @@ public class MainActivity extends FragmentActivity implements ZXingScannerView.R
                 mScannerView = new ZXingScannerView(this);   // Programmatically initialize the scanner view
                 setContentView(mScannerView);                // Set the scanner view as the content view
             }else {
+                /*
+                not called, during dialog fragment showing onscreen,
+                and user click the back button
+
+                */
                 Log.v(TAG, "onCreate()>> I'm back " );
                 mScannerView.resumeCameraPreview(resultHandler);
             }
@@ -82,6 +87,12 @@ public class MainActivity extends FragmentActivity implements ZXingScannerView.R
 
         @Override
         public void onDestroyView() {
+
+               /*
+                 this is called , when a dialog fragment showing onscreen,
+                and a user click the back button
+
+                */
             super.onDestroyView();
             mScannerView.resumeCameraPreview(resultHandler);
         }
