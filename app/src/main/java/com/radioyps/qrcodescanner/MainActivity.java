@@ -31,7 +31,7 @@ public class MainActivity extends FragmentActivity implements ZXingScannerView.R
                 /*
                 not called, during dialog fragment showing onscreen,
                 and user click the back button
-
+                 in fact, this crashed the app
                 */
                 Log.v(TAG, "onCreate()>> I'm back " );
                 mScannerView.resumeCameraPreview(resultHandler);
@@ -43,6 +43,7 @@ public class MainActivity extends FragmentActivity implements ZXingScannerView.R
         public void onResume() {
             super.onResume();
             Log.v(TAG, "onResume()>> " ); // Prints scan results
+            if(resultHandler != null)
             mScannerView.setResultHandler(this); // Register ourselves as a handler for scan results.
             mScannerView.startCamera();// Start camera on resume
         }
