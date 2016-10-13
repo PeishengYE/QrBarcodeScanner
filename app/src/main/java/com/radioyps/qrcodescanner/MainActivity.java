@@ -23,10 +23,11 @@ public class MainActivity extends FragmentActivity implements ZXingScannerView.R
         public void onCreate(Bundle savedInstanceState) {
 
             super.onCreate(savedInstanceState);
+            mScannerView = new ZXingScannerView(this);   // Programmatically initialize the scanner view
+            setContentView(mScannerView);
             if(savedInstanceState == null){
                 Log.v(TAG, "onCreate()>> first created " );
-                mScannerView = new ZXingScannerView(this);   // Programmatically initialize the scanner view
-                setContentView(mScannerView);                // Set the scanner view as the content view
+                         // Set the scanner view as the content view
             }else {
                 /*
                 not called, during dialog fragment showing onscreen,
@@ -34,7 +35,7 @@ public class MainActivity extends FragmentActivity implements ZXingScannerView.R
                  in fact, this crashed the app
                 */
                 Log.v(TAG, "onCreate()>> I'm back " );
-                mScannerView.resumeCameraPreview(resultHandler);
+                //mScannerView.resumeCameraPreview(resultHandler);
             }
 
         }
@@ -43,7 +44,7 @@ public class MainActivity extends FragmentActivity implements ZXingScannerView.R
         public void onResume() {
             super.onResume();
             Log.v(TAG, "onResume()>> " ); // Prints scan results
-            if(resultHandler != null)
+
             mScannerView.setResultHandler(this); // Register ourselves as a handler for scan results.
             mScannerView.startCamera();// Start camera on resume
         }
