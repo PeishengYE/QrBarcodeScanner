@@ -85,6 +85,8 @@ public class MainActivity extends FragmentActivity implements ZXingScannerView.R
                         }
                     })
                     .create();
+
+            /* this crash the app when screen rotate */
         }
 
         @Override
